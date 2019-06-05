@@ -22,6 +22,15 @@
         }
 
         /// <summary>
+        /// 全部用户
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<JwtUser>> GetListAsync()
+        {
+            return await this._jwtUserRepository.GetListAsync();
+        }
+
+        /// <summary>
         ///  用户名和密码获取用户
         /// </summary>
         /// <param name="inDto">inDto</param>
@@ -31,14 +40,7 @@
             return await _jwtUserRepository.GetJwtUserAsync(inDto);
         }
 
-        /// <summary>
-        /// 全部用户
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<JwtUser>> GetListAsync()
-        {
-            return await this._jwtUserRepository.GetListAsync();
-        }
+
 
         /// <summary>
         /// 创建用户

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace My.Application.Test
 {
 
-    public class ServiceRegistration : Module
+    public class ServiceRegistration : Module //Autofac
     {
         /// <summary>
         /// 依赖注入
