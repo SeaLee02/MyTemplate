@@ -1,0 +1,48 @@
+﻿<#+
+// <copyright file="Service.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class Service : CSharpTemplate
+{
+     private DbTable _model;
+     private MyConfig _config;
+     public Service(DbTable model,MyConfig config)
+     {
+         _model=model;
+         _config=config;
+     }
+
+	public override string TransformText()
+	{
+#>
+namespace <#= _config.NameSpace #>
+{
+    using My.Application.Repositories.<#=StringUtil.GetLastString(_config.NameSpace) #>;
+    using My.Entity.<#=StringUtil.GetLastString(_config.NameSpace) #>;
+    using My.Entity.<#=StringUtil.GetLastString(_config.NameSpace) #>.Dto;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// <#=_model.TableDesc #>应用层服务
+    /// </summary>
+    public class <#=StringUtil.ToCase(_model.TableName) #>Service : I<#=StringUtil.ToCase(_model.TableName) #>Service
+    {
+        private readonly I<#=StringUtil.ToCase(_model.TableName) #>Repository _<#=StringUtil.ToLower(_model.TableName) #>Repository;
+
+        public <#=StringUtil.ToCase(_model.TableName) #>Service(I<#=StringUtil.ToCase(_model.TableName) #>Repository <#=StringUtil.ToLower(_model.TableName) #>Repository)
+        {
+            this._<#=StringUtil.ToLower(_model.TableName) #>Repository = <#=StringUtil.ToLower(_model.TableName) #>Repository;
+        }
+
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

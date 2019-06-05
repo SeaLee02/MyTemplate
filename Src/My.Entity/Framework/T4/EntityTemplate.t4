@@ -1,0 +1,85 @@
+﻿<#+
+// <copyright file="Template1.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class EntityTemplate : CSharpTemplate
+{
+     private DbTable _model;
+     private MyConfig _config;
+     public EntityTemplate(DbTable model,MyConfig config)
+     {
+         _model=model;
+         _config=config;
+     }
+  
+     private string GetIsNull(DbColumn column)
+     {
+         if(column.CommonType.IsValueType && column.IsNullable){
+              return "?";
+         }else{
+             return "";
+         }
+      }
+
+     private string GetIsNull(string str)
+     {
+         if(str.Equals("varchar")||str.Equals("")){
+              return "?";
+         }else{
+             return "";
+         }
+      }
+      
+
+	public override string TransformText()
+	{
+#>
+namespace <#=_config.NameSpace #>
+{
+    using System;
+    using System.ComponentModel;   
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    /// <summary>
+    /// <#=_model.TableDesc #>
+    /// </summary>
+    [Table("<#= _model.TableName #>")]
+    public class <#=StringUtil.ToCase(_model.TableName) #>
+    {
+
+        /// <summary>
+        /// 主键
+        /// </summary>
+        [Column("<#=_model.TablePrimarkeyName #>")]
+        [Display(Name = "<#=_model.TableDesc #>主键", Description = "<#=_model.TableDesc #>主键")]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public <#=_model.CShareType #> Id { get; set; }
+
+<#+foreach(DbColumn column in _model.DbColumns.Where(x=>x.ColumnName!=_model.TablePrimarkeyName)){#>
+        /// <summary>
+        /// <#=column.ColumnDesc #>
+        /// </summary>
+<#+if(column.ColumnDesc!=""){#>
+        [Display(Description = "<#=column.ColumnDesc #>", Name = "<#=column.ColumnDesc #>")]
+<#+}#>
+		[Column("<#=column.ColumnName #>")]
+<#+if(column.CShareType=="string"){#>
+        [StringLength(<#=column.CharLength #>)]
+<#+}#>
+        public <#= column.CShareType  #><#= GetIsNull(column) #>  <#= StringUtil.ToCase(column.ColumnName) #> { get; set; }
+
+<#+} #>
+    }
+
+<#+ foreach(string enumStr in _model.ListEnumStr){#>
+
+<#= enumStr #>
+<#+} #>
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

@@ -1,0 +1,49 @@
+﻿<#+
+// <copyright file="AppServiceTest.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class AppService_Test : CSharpTemplate
+{
+     private DbTable _model;
+     private MyConfig _config;
+     public AppService_Test(DbTable model,MyConfig config)
+     {
+         _model=model;
+         _config=config;
+     }
+
+	public override string TransformText()
+	{
+#>
+namespace <#= _config.NameSpace #>
+{
+    using My.Application.Services.<#=StringUtil.GetLastString(_config.NameSpace) #>;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// <#=_model.TableDesc #>应用层服务测试
+    /// </summary>
+	public class <#=StringUtil.ToCase(_model.TableName) #>AppService_Test
+	{
+        /// <summary>
+        /// 依赖注入
+        /// </summary>
+        private readonly I<#=StringUtil.ToCase(_model.TableName) #>Service _<#=StringUtil.ToLower(_model.TableName) #>Service;
+
+        public <#=StringUtil.ToCase(_model.TableName) #>AppService_Test(I<#=StringUtil.ToCase(_model.TableName) #>Service <#=StringUtil.ToLower(_model.TableName) #>Service)
+        {
+            this._<#=StringUtil.ToLower(_model.TableName) #>Service = <#=StringUtil.ToLower(_model.TableName) #>Service;
+        }
+
+	}
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

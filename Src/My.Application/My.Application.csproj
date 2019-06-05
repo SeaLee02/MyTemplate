@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{140524F3-A3F8-47A1-83FF-47949190FF5E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>My.Application</RootNamespace>
+    <AssemblyName>My.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="01Services\01Demo\Demo_JwtUser\IJwtUserService.cs" />
+    <Compile Include="01Services\01Demo\Demo_JwtUser\JwtUserService.cs" />
+    <Compile Include="01Services\01Demo\JwtRole\IJwtRoleService.cs" />
+    <Compile Include="01Services\01Demo\JwtRole\JwtRoleService.cs" />
+    <Compile Include="01Services\01Demo\_ServiceDemo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_ServiceDemo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="02Repositories\01Demo\Demo_JwtUser\IJwtUserRepository.cs" />
+    <Compile Include="02Repositories\01Demo\Demo_JwtUser\JwtUserRepository.cs" />
+    <Compile Include="02Repositories\01Demo\Demo_Token\IJwtTokenRepository.cs" />
+    <Compile Include="02Repositories\01Demo\JwtRole\IJwtRoleRepository.cs" />
+    <Compile Include="02Repositories\01Demo\JwtRole\JwtRoleRepository.cs" />
+    <Compile Include="02Repositories\01Demo\_RepositoryDemo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_RepositoryDemo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="01Services\01Demo\Demo_Token\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\My.DataAccess\My.DataAccess.csproj">
+      <Project>{677477b5-cc7f-4474-8901-8cbc6234bec8}</Project>
+      <Name>My.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.Entity\My.Entity.csproj">
+      <Project>{071c08f6-7dc3-491e-8563-7a0958d60baa}</Project>
+      <Name>My.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Framework\T4\IRepository.t4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="01Services\01Demo\_ServiceDemo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>_ServiceDemo.cs</LastGenOutput>
+      <LastOutputs>
+.\_ServiceDemo.cs
+.\JwtRole\IJwtRoleService.cs
+.\JwtRole\JwtRoleService.cs
+</LastOutputs>
+    </Content>
+    <Content Include="02Repositories\01Demo\_RepositoryDemo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>_RepositoryDemo.cs</LastGenOutput>
+      <LastOutputs>
+.\_RepositoryDemo.cs
+.\JwtRole\IJwtRoleRepository.cs
+.\JwtRole\JwtRoleRepository.cs
+</LastOutputs>
+    </Content>
+    <None Include="Framework\T4\Service.t4" />
+    <None Include="Framework\T4\IService.t4" />
+    <None Include="Framework\T4\Repository.t4" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

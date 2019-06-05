@@ -1,0 +1,6 @@
+﻿{
+  "ConnectionString": "server=.;uid=sa;pwd=123;database=JwtWebApi",
+  "IsOverrideFile": false,
+  "NameSpace": "My.Entity.Demo",
+  "TableName": "DM_"
+}

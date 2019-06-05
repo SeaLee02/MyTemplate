@@ -1,0 +1,36 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs"#>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)File\Sealee.T4Helper.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Sealee.T4Helper" #>
+<#
+    // 配置config
+    string solutionsPath = Host.ResolveAssemblyReference("$(SolutionDir)");
+    MyConfig myConfig=StringUtil.GetConfig (solutionsPath+"File\\T4Helper.json");
+    myConfig.IsOverrideFile=true;
+    myConfig.TableName="View_";
+    myConfig.NameSpace="My.Entity.Demo.View";
+    List<DbView> views=DbUtil.GetDbView(myConfig.ConnectionString,myConfig.TableName).ToList();
+#>
+namespace My.DataAccess.Framework
+{
+    using System.Data.Entity;
+    using <#=        myConfig.NameSpace #>;
+
+    /// <summary>
+    /// 数据库对应表
+    /// </summary>
+	public partial class MyDbContext
+    {<#    foreach(DbView view in views){ #> 
+		/// <summary>
+        /// <#=view.ViewDesc #>
+        /// </summary>
+		public DbSet<<#= StringUtil.ToCase(view.ViewName)#>> <#= StringUtil.ToCase(view.ViewName)#> { get; set; }
+	<#    }#> 
+	}
+}
