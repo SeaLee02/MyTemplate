@@ -1,0 +1,44 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Index";
+    //Layout = "";
+}
+
+<h2>Index</h2>
+
+@section styles{
+
+}
+
+@section scripts{
+    <script>
+        'use strict';
+        (function () {
+            var json =@Html.Raw(ViewBag.json) ;
+
+            console.log(json);
+            var da = {
+                key: 'value',
+                key2: 'key2'
+            };
+
+        //提交 Ajax 成功后，静态更新表格中的数据
+        var options = {
+            url:'/Home/ListData2',//请求列表
+            type: "get",//请求方式
+            async: true,//是否异步，默认为true
+            contentType: "application/json",//发生给服务器的格式
+            dataType: "json",//服务器返回的格式
+            //data: JSON.stringify(da),//请求数据 {key:value,key2:key2 }
+        };
+            var success = function (result) {
+                console.log(result);
+            };
+             sea.ajax(options).done(success);
+        })();
+
+
+    </script>
+
+}

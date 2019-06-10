@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>模板</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    @*自定义样式节点*@
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    @RenderBody()
+
+
+    <script src="~/Content/jqery/jquery.min.js"></script>
+    <script src="~/Content/Util/Sea.js?rund=@DateTime.Now.Ticks"></script>
+    <script src="~/Content/lodash/lodash.min.js"></script>
+    <script src="~/Content/Vue/vue.min.js"></script>
+    @*自定义脚本节点*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

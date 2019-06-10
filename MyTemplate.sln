@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiOwin", "Src\WebApiOwi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "My.Application.Test", "Test\My.Application.Test\My.Application.Test.csproj", "{B0AA4FD8-4096-4F33-A351-510EB7A1A9F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcEmpty", "Src\MvcEmpty\MvcEmpty.csproj", "{A972B9A8-748B-4493-8222-3F5FE4F1328D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{B0AA4FD8-4096-4F33-A351-510EB7A1A9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0AA4FD8-4096-4F33-A351-510EB7A1A9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0AA4FD8-4096-4F33-A351-510EB7A1A9F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A972B9A8-748B-4493-8222-3F5FE4F1328D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A972B9A8-748B-4493-8222-3F5FE4F1328D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A972B9A8-748B-4493-8222-3F5FE4F1328D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A972B9A8-748B-4493-8222-3F5FE4F1328D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{140524F3-A3F8-47A1-83FF-47949190FF5E} = {7C8D2631-4BA2-4C8B-AC5B-09FA6A3DB165}
 		{4ECB40A5-8C3F-4547-B5BD-A8CCA8C0A40A} = {7C8D2631-4BA2-4C8B-AC5B-09FA6A3DB165}
 		{B0AA4FD8-4096-4F33-A351-510EB7A1A9F4} = {68992C9A-BBAD-4E51-9309-32167CC1F76B}
+		{A972B9A8-748B-4493-8222-3F5FE4F1328D} = {7C8D2631-4BA2-4C8B-AC5B-09FA6A3DB165}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C15BFDD5-BFCA-4753-A939-79014BCB66D9}
