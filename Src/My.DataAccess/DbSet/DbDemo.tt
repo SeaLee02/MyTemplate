@@ -1,0 +1,36 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs"#>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)_file\Sealee.T4Helper.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Sealee.T4Helper" #>
+<#
+    // 配置config
+    string solutionsPath = Host.ResolveAssemblyReference("$(SolutionDir)");
+    MyConfig myConfig=StringUtil.GetConfig (solutionsPath+"_file\\T4Helper.json");
+    myConfig.IsOverrideFile=true;
+    myConfig.TableName="Demo_";
+    myConfig.NameSpace="My.Entity.Demo";
+    List<DbTable> tableInfos=DbUtil.GetDbTables(myConfig.ConnectionString,myConfig.TableName).Where(x=>x.HasPrimaryKey==true).ToList();
+#>
+namespace My.DataAccess.Framework
+{
+    using System.Data.Entity;
+    using <#=        myConfig.NameSpace #>;
+
+    /// <summary>
+    /// 数据库对应表
+    /// </summary>
+	public partial class MyDbContext
+    {<#    foreach(DbTable tableInfo in tableInfos){ #> 
+		/// <summary>
+        /// <#=tableInfo.TableDesc #>
+        /// </summary>
+		public DbSet<<#= StringUtil.ToCase(tableInfo.TableName)#>> <#= StringUtil.ToCase(tableInfo.TableName)#> { get; set; }
+	<#    }#> 
+	}
+}

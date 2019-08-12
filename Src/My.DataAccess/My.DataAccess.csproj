@@ -68,6 +68,10 @@
     <Folder Include="Framework\T4\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DbSet\DbDemo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbDemo1.cs</LastGenOutput>
+    </Content>
     <Content Include="DbSet\View\ViewDbDemo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ViewDbDemo.cs</LastGenOutput>
